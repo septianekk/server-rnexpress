@@ -59,13 +59,13 @@ exports.findOne = (req, res) => {
 exports.findOneByUsername = (req, res) => {
   const username = req.params.username;
 
-  User.findById(username)
+  User.findById({ username: { $regex: username, $options: "i" } })
     .then((data) => {
-      if (!data) res.status(404).send({ message: "Not found " + id });
+      if (!data) res.status(404).send({ message: "Not found " + username });
       else res.send(data);
     })
     .catch((err) => {
-      res.status(500).send({ message: "Error " + id });
+      res.status(500).send({ message: "Error " + username });
     });
 };
 
