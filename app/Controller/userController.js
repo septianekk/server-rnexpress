@@ -56,6 +56,19 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.findOneByUsername = (req, res) => {
+  const username = req.params.username;
+
+  User.findById(username)
+    .then((data) => {
+      if (!data) res.status(404).send({ message: "Not found " + id });
+      else res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error " + id });
+    });
+};
+
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
