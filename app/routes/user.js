@@ -15,5 +15,7 @@ module.exports = (app) => {
 
   router.delete("/", users.deleteAll);
 
+  router.get("/:username", users.findOneByUsername);
+
   app.use("/api/users", router);
 };
