@@ -57,7 +57,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.findOneByUsername = (req, res) => {
-  const username = req.params.username;
+  let username = req.params.username;
 
   User.find({ username: { $regex: username, $options: "i" } })
     .then((data) => {
