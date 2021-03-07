@@ -5,10 +5,10 @@ module.exports = (app) => {
 
   router.post("/", users.create);
   router.get("/", users.findAll);
-  router.get("/username/:username", users.findByUserName);
-  router.get("/email/:email", users.findByEmail);
-  router.get("/phone/:phone", users.findByPhone);
-  router.get("/address/:address", users.findByAddress);
+  // router.get("/username/:username", users.findByUserName);
+  // router.get("/email/:email", users.findByEmail);
+  // router.get("/phone/:phone", users.findByPhone);
+  // router.get("/address/:address", users.findByAddress);
 
   router.get("/:id", users.findOne);
 
