@@ -27,9 +27,16 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  User.find().exec((err, data) => {
-    res.send(data);
-  });
+  User.find()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials.",
+      });
+    });
 };
 
 exports.findByUserName = (req, res) => {
