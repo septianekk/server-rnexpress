@@ -56,19 +56,6 @@ exports.findOne = (req, res) => {
     });
 };
 
-exports.findOneByUsername = (req, res) => {
-  let username = req.params.username;
-
-  User.find({ username: { $regex: username, $options: "i" } })
-    .then((data) => {
-      if (!data) res.status(404).send({ message: "Not found " + username });
-      else res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "Error " + username });
-    });
-};
-
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
