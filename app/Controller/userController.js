@@ -43,8 +43,8 @@ exports.create = (req, res) => {
 //     });
 // };
 
-exports.findAll = async (req, res) => {
-  await User.find()
+exports.findAll = (req, res) => {
+  User.find()
     .then((data) => {
       res.send(data);
     })
