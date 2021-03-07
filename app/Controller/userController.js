@@ -26,6 +26,12 @@ exports.create = (req, res) => {
     });
 };
 
+exports.findAll = (req, res) => {
+  User.find().exec((err, data) => {
+    res.send(data);
+  });
+};
+
 exports.findByUserName = (req, res) => {
   let username = req.query.username;
 
