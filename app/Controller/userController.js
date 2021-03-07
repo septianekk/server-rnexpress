@@ -27,7 +27,9 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  User.find()
+  const username = req.query.username;
+
+  Tutorial.find({ username: { $regex: username, $options: "i" } })
     .then((data) => {
       res.send(data);
     })
@@ -39,61 +41,61 @@ exports.findAll = (req, res) => {
     });
 };
 
-exports.findByUserName = (req, res) => {
-  let username = req.query.username;
+// exports.findByUserName = (req, res) => {
+//   let username = req.query.username;
 
-  User.find({ username: { $regex: username, $options: "i" } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "error ambil data",
-      });
-    });
-};
+//   User.find({ username: { $regex: username, $options: "i" } })
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "error ambil data",
+//       });
+//     });
+// };
 
-exports.findByEmail = (req, res) => {
-  let email = req.query.email;
+// exports.findByEmail = (req, res) => {
+//   let email = req.query.email;
 
-  User.find({ email: { $regex: email, $options: "i" } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "error ambil data",
-      });
-    });
-};
+//   User.find({ email: { $regex: email, $options: "i" } })
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "error ambil data",
+//       });
+//     });
+// };
 
-exports.findByPhone = (req, res) => {
-  let phone = req.query.phone;
+// exports.findByPhone = (req, res) => {
+//   let phone = req.query.phone;
 
-  User.find({ phone: { $regex: phone, $options: "i" } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "error ambil data",
-      });
-    });
-};
+//   User.find({ phone: { $regex: phone, $options: "i" } })
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "error ambil data",
+//       });
+//     });
+// };
 
-exports.findByAddress = (req, res) => {
-  let address = req.query.address;
+// exports.findByAddress = (req, res) => {
+//   let address = req.query.address;
 
-  User.find({ address: { $regex: address, $options: "i" } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "error ambil data",
-      });
-    });
-};
+//   User.find({ address: { $regex: address, $options: "i" } })
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "error ambil data",
+//       });
+//     });
+// };
 
 exports.findOne = (req, res) => {
   const id = req.params.id;
