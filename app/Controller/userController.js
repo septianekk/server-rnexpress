@@ -28,74 +28,20 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
   const username = req.query.username;
+  var condition = username
+    ? { username: { $regex: new RegExp(username), $options: "i" } }
+    : {};
 
-  Tutorial.find({ username: { $regex: username, $options: "i" } })
+  User.find(condition)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials.",
+        message: err.message || "error ambil data",
       });
     });
 };
-
-// exports.findByUserName = (req, res) => {
-//   let username = req.query.username;
-
-//   User.find({ username: { $regex: username, $options: "i" } })
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "error ambil data",
-//       });
-//     });
-// };
-
-// exports.findByEmail = (req, res) => {
-//   let email = req.query.email;
-
-//   User.find({ email: { $regex: email, $options: "i" } })
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "error ambil data",
-//       });
-//     });
-// };
-
-// exports.findByPhone = (req, res) => {
-//   let phone = req.query.phone;
-
-//   User.find({ phone: { $regex: phone, $options: "i" } })
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "error ambil data",
-//       });
-//     });
-// };
-
-// exports.findByAddress = (req, res) => {
-//   let address = req.query.address;
-
-//   User.find({ address: { $regex: address, $options: "i" } })
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "error ambil data",
-//       });
-//     });
-// };
 
 exports.findOne = (req, res) => {
   const id = req.params.id;
